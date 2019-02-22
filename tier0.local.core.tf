@@ -7,6 +7,7 @@ resource "azurerm_resource_group" "core" {
 resource "azurerm_virtual_network" "core" {
   name                = "core"
   resource_group_name = "${azurerm_resource_group.core.name}"
+  location            = "${azurerm_resource_group.core.location}"
   address_space       = ["10.0.0.0/16"]
   dns_servers         = ["1.1.1.1", "1.0.0.1"]
   tags                 = "${azurerm_resource_group.core.tags}"
