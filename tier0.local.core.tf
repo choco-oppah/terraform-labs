@@ -60,6 +60,6 @@ resource "azurerm_public_ip" "vpnGatewayPublicIp" {
     public_ip_address_id          = "${azurerm_public_ip.vpnGatewayPublicIp.id}"
     private_ip_address_allocation = "Dynamic"
     subnet_id                     = "${azurerm_subnet.GatewaySubnet.id}"
-  } */
+  }
 
-}
+} */
