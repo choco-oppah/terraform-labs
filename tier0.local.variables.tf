@@ -5,7 +5,7 @@ variable "loc" {
 
 variable "webapplocs" {
     description = "Default Azure region"
-    default     =   ["eastasia", "southeastasia", "koreacentral"]
+    default     =   ["southeastasia", "eastasia", "koreacentral"]
 }
 
 variable "tags" {
