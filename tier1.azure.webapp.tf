@@ -1,5 +1,5 @@
-resource "azurerm_resource_group" "azure-webapp" {
-   name         = "azure-webapp"
+resource "azurerm_resource_group" "azure-webapps" {
+   name         = "azure-webapps"
    location     = "${var.loc}"
    tags         = "${var.tags}"
 }
@@ -15,8 +15,8 @@ resource "random_string" "webapprnd" {
 resource "azurerm_app_service_plan" "free" {
     name                = "plan-free-${var.loc}"
     location            = "${var.loc}"
-    resource_group_name = "${azurerm_resource_group.webapps.name}"
-    tags                = "${azurerm_resource_group.webapps.tags}"
+    resource_group_name = "${azurerm_resource_group.azure-webapps.name}"
+    tags                = "${azurerm_resource_group.azure-webapps.tags}"
 
     kind                = "Linux"
     sku {
@@ -28,8 +28,8 @@ resource "azurerm_app_service_plan" "free" {
 resource "azurerm_app_service" "citadel" {
     name                = "webapp-${random_string.webapprnd.result}-${var.loc}"
     location            = "${var.loc}"
-    resource_group_name = "${azurerm_resource_group.webapps.name}"
-    tags                = "${azurerm_resource_group.webapps.tags}"
+    resource_group_name = "${azurerm_resource_group.azure-webapps.name}"
+    tags                = "${azurerm_resource_group.azure-webapps.tags}"
 
     app_service_plan_id = "${azurerm_app_service_plan.free.id}"
 }
