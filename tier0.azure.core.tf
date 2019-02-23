@@ -10,35 +10,38 @@ resource "azurerm_virtual_network" "azure-hub" {
   location            = "${azurerm_resource_group.azure-core.location}"
   address_space       = ["192.168.0.0/16"]
   tags                 = "${azurerm_resource_group.azure-core.tags}"
-}
+    subnet {
+      name                 = "GatewaySubnet"
+      address_prefix       = "192.168.0.0/24"
+    }
 
-resource "azurerm_subnet" "GatewaySubnet" {
-  name                 = "GatewaySubnet"
-  resource_group_name  = "${azurerm_resource_group.azure-core.name}"
-  virtual_network_name = "${azurerm_virtual_network.azure-hub.name}"
-  address_prefix       = "192.168.0.0/24"
-}
+    subnet {
+      name                 = "jump"
+      address_prefix       = "192.168.1.0/24"
+    }
 
-resource "azurerm_subnet" "jump" {
-  name                 = "jump"
-  resource_group_name  = "${azurerm_resource_group.azure-core.name}"
-  virtual_network_name = "${azurerm_virtual_network.azure-hub.name}"
-  address_prefix       = "192.168.1.0/24"
+    subnet {
+      name                 = "management"
+      address_prefix       = "192.168.2.0/24"
+    }
 }
-
-resource "azurerm_subnet" "management" {
-  name                 = "management"
-  resource_group_name  = "${azurerm_resource_group.azure-core.name}"
-  virtual_network_name = "${azurerm_virtual_network.azure-core.name}"
-  address_prefix       = "192.168.2.0/24"
-}
-
 resource "azurerm_virtual_network" "azure-spoke" {
   name                = "azure-spoke"
   resource_group_name = "${azurerm_resource_group.azure-core.name}"
   location            = "${azurerm_resource_group.azure-core.location}"
   address_space       = ["192.168.1.0/16"]
   tags                 = "${azurerm_resource_group.azure-core.tags}"
+
+    subnet {
+      name                 = "GatewaySubnet"
+      address_prefix       = "192.168.0.0/24"
+    }
+
+    subnet {
+      name                 = "virtualmachine"
+      address_prefix       = "192.168.1.0/24"
+    }
+
 }
 resource "azurerm_public_ip" "vpnGatewayPublicIp" {
   name                    = "vpnGatewayPublicIp"
