@@ -1,6 +1,6 @@
 variable "loc" {
     description = "Default Azure region"
-    default     =   "Southeast Asia"
+    default     =   ["eastasia", "southeastasia", "koreacentral"]
 }
 
 variable "tags" {
