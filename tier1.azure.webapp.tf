@@ -38,5 +38,5 @@ resource "azurerm_app_service" "citadel" {
 
 output "webapp_ids" {
   description = "ids of the webapps provisoned."
-  value       = "${azurerm_resource_group.azure-webapps.*.id}"
+  value       = "${azurerm_app_service_plan.free.*.id}"
 }
