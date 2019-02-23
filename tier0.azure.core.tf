@@ -8,7 +8,7 @@ resource "azurerm_virtual_network" "azure-hub" {
   name                = "azure-hub"
   resource_group_name = "${azurerm_resource_group.azure-core.name}"
   location            = "${azurerm_resource_group.azure-core.location}"
-  address_space       = ["192.168.0.0/16"]
+  address_space       = ["192.168.0.0/18"]
   tags                 = "${azurerm_resource_group.azure-core.tags}"
     subnet {
       name                 = "GatewaySubnet"
@@ -29,17 +29,17 @@ resource "azurerm_virtual_network" "azure-spoke" {
   name                = "azure-spoke"
   resource_group_name = "${azurerm_resource_group.azure-core.name}"
   location            = "${azurerm_resource_group.azure-core.location}"
-  address_space       = ["192.168.1.0/16"]
+  address_space       = ["192.168.64.0/18"]
   tags                 = "${azurerm_resource_group.azure-core.tags}"
 
     subnet {
       name                 = "GatewaySubnet"
-      address_prefix       = "192.168.0.0/24"
+      address_prefix       = "192.168.64.0/24"
     }
 
     subnet {
       name                 = "virtualmachine"
-      address_prefix       = "192.168.1.0/24"
+      address_prefix       = "192.168.65.0/24"
     }
 
 }
