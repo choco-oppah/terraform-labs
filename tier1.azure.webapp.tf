@@ -33,5 +33,5 @@ resource "azurerm_app_service" "citadel" {
     resource_group_name = "${azurerm_resource_group.azure-webapps.name}"
     tags                = "${azurerm_resource_group.azure-webapps.tags}"
 
-    app_service_plan_id = "${azurerm_app_service_plan.free.id}"
+    app_service_plan_id = "${element(azurerm_app_service_plan.free.*.id, count.index)}"
 }
