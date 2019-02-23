@@ -1,7 +1,11 @@
-loc     = "westeurope"
+loc     = "southeastasia"
 tags    = {
     source  = "citadel"
     env     = "training"
 }
-webapplocs  = [""]
+webapplocs  = [
+    "southeastasia",
+    "eastasia",
+    "koreacentral"
+    ]
 
