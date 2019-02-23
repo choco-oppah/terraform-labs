@@ -35,3 +35,8 @@ resource "azurerm_app_service" "citadel" {
 
     app_service_plan_id = "${element(azurerm_app_service_plan.free.*.id, count.index)}"
 }
+
+output "webapp_ids" {
+  description = "ids of the webapps provisoned."
+  value       = "${azurerm_resource_group.azure-webapps.*.id}"
+}
