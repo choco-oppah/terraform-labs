@@ -3,5 +3,5 @@ tags    = {
     source  = "citadel"
     env     = "training"
 }
-webapplocs  = []
+webapplocs  = [""]
 
