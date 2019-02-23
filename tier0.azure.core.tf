@@ -43,7 +43,7 @@ resource "azurerm_virtual_network" "azure-spoke" {
     }
 
 }
-resource "azurerm_public_ip" "vpnGatewayPublicIp" {
+resource "azurerm_public_ip" "azure-vpnGatewayPublicIp" {
   name                    = "vpnGatewayPublicIp"
   location                = "${azurerm_resource_group.azure-core.location}"
   resource_group_name     = "${azurerm_resource_group.azure-core.name}"
