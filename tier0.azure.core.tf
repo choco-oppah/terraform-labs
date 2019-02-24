@@ -46,16 +46,16 @@ resource "azurerm_virtual_network" "azure-spoke" {
 resource "azurerm_virtual_network_peering" "hub" {
   name                      = "hubtospoke"
   resource_group_name       = "${azurerm_resource_group.azure-core.name}"
-  virtual_network_name      = "${azurerm_virtual_network.hub.name}"
-  remote_virtual_network_id = "${azurerm_virtual_network.spoke.id}"
+  virtual_network_name      = "${azurerm_virtual_network.azure-hub.name}"
+  remote_virtual_network_id = "${azurerm_virtual_network.azure-spoke.id}"
   allow_gateway_transit     = true
 }
 
 resource "azurerm_virtual_network_peering" "spoke" {
   name                      = "spoketohub"
   resource_group_name       = "${azurerm_resource_group.azure-core.name}"
-  virtual_network_name      = "${azurerm_virtual_network.spoke.name}"
-  remote_virtual_network_id = "${azurerm_virtual_network.hub.id}"
+  virtual_network_name      = "${azurerm_virtual_network.azure-spoke.name}"
+  remote_virtual_network_id = "${azurerm_virtual_network.azure-hub.id}"
   allow_virtual_network_access  = true
   use_remote_gateways       = true
 }
