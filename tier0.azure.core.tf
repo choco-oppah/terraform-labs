@@ -57,7 +57,7 @@ resource "azurerm_virtual_network_peering" "spoke" {
   virtual_network_name      = "${azurerm_virtual_network.azure-spoke.name}"
   remote_virtual_network_id = "${azurerm_virtual_network.azure-hub.id}"
   allow_virtual_network_access  = true
-  use_remote_gateways       = true
+  /*use_remote_gateways       = true*/
 }
 
 resource "azurerm_public_ip" "azure-vpnGatewayPublicIp" {
